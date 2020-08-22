@@ -1,0 +1,33 @@
+name: 'Random'
+on:
+  schedule:
+    - cron: '0 3 * * *'
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+    # Install Nix
+    - uses: cachix/install-nix-action@v10
+    - name: Set up binary cache
+      run: nix-env -iA cachix -f https://cachix.org/api/v1/install && cachix use emacs-ci
+
+    # Install and configure elinter
+    - name: Install elinter
+      working-directory: ./elinter
+      run: nix-env -if https://github.com/akirak/elinter/archive/v4.tar.gz -A main
+    - name: Configure elinter
+      run: |
+        echo "::set-env name=ELINTER_LINTERS::checkdoc check-declare package-lint melpazoid"
+        echo "::set-env NAME=EMACS_VERSION::27.1"
+
+    - name: Check out MELPA
+      uses: actions/checkout@v2
+      with:
+        repository: melpa/melpa
+        path: melpa
+
+    - name: Randomly pick a package and run lint
+      working-directory: ./melpa/recipes
+      run: |
+        i=$(( $RANDOM * $(ls -l | wc -l) / 32767 ))
+        elinter -r $(ls | head -n $i | tail -1)
