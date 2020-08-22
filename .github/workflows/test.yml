@@ -33,3 +33,21 @@ jobs:
       working-directory: ./lsp-dart
       env:
         ELINTER_ALLOW_WARNINGS: melpazoid
+
+    - name: Check out reformatter.el
+      uses: actions/checkout@v2
+      with:
+        repository: akirak/reformatter.el
+        ref: elinter
+        path: reformatter.el
+    - run: elinter --ert --from-nixpkgs shfmt -- reformatter-tests.el
+      working-directory: ./reformatter.el
+
+    - name: Check out dhall-mode
+      uses: actions/checkout@v2
+      with:
+        repository: akirak/dhall-mode
+        ref: elinter
+        path: dhall-mode
+    - run: elinter
+      working-directory: ./dhall-mode
