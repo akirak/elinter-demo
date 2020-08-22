@@ -13,7 +13,6 @@ jobs:
 
     # Install and configure elinter
     - name: Install elinter
-      working-directory: ./elinter
       run: nix-env -if https://github.com/akirak/elinter/archive/v4.tar.gz -A main
     - name: Configure elinter
       run: |
