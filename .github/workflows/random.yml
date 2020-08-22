@@ -28,5 +28,5 @@ jobs:
     - name: Randomly pick a package and run lint
       working-directory: ./melpa/recipes
       run: |
-        i=$(( $RANDOM * $(ls -l | wc -l) / 32767 ))
+        i=$(( $RANDOM * $(ls | wc -l) / 32767 ))
         elinter -r $(ls | head -n $i | tail -1)
