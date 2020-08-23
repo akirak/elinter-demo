@@ -2,7 +2,7 @@
 This is a demo for [[https://github.com/akirak/elinter][elinter]].
 
 #+begin_html
-<a href="https://github.com/akirak/elinter-demo/actions?query=workflow%3A%22Demo%22">
+<a href="https://github.com/akirak/elinter-demo/actions?query=workflow%3ADemo+branch%3Amaster">
 <img alt="Build Status" src="https://github.com/akirak/elinter-demo/workflows/Demo/badge.svg" />
 </a>
 #+end_html
