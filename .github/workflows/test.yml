@@ -51,3 +51,12 @@ jobs:
         path: dhall-mode
     - run: elinter
       working-directory: ./dhall-mode
+
+    - name: Check out general.el
+      uses: actions/checkout@v2
+      with:
+        repository: akirak/general.el
+        ref: elinter
+        path: general.el
+    - run: elinter --buttercup
+      working-directory: ./general.el
