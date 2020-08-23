@@ -9,7 +9,7 @@ Selected packages are tested in a GitHub Action:
 </a>
 #+end_html
 
-A randomly picked package is checked on daily basis:
+A randomly picked package is checked on a daily basis:
 
 #+begin_html
 <a href="https://github.com/akirak/elinter-demo/actions?query=workflow%3A%22Random%22">
