@@ -3,7 +3,7 @@ on:
   schedule:
     - cron: '0 3 * * *'
 jobs:
-  demo:
+  lint:
     runs-on: ubuntu-latest
     steps:
     # Install Nix
@@ -16,6 +16,7 @@ jobs:
       run: nix-env -if https://github.com/akirak/elinter/archive/v4.tar.gz -A main
     - name: Configure elinter
       run: |
+        # Set the linters and the Emacs version used for linting
         echo "::set-env name=ELINTER_LINTERS::checkdoc check-declare package-lint melpazoid"
         echo "::set-env NAME=EMACS_VERSION::27.1"
 
@@ -25,7 +26,7 @@ jobs:
         repository: melpa/melpa
         path: melpa
 
-    - name: Randomly pick a package and run lint
+    - name: Randomly pick a package and run lint on it
       working-directory: ./melpa/recipes
       run: |
         i=$(( $RANDOM * $(ls | wc -l) / 32767 ))
