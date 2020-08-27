@@ -5,6 +5,11 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        percentage:
+          - 60
+          - 80
     steps:
     # Install Nix
     - uses: cachix/install-nix-action@v10
@@ -20,14 +25,12 @@ jobs:
         echo "::set-env name=ELINTER_LINTERS::checkdoc check-declare package-lint melpazoid"
         echo "::set-env NAME=EMACS_VERSION::27.1"
 
-    - name: Check out MELPA
-      uses: actions/checkout@v2
-      with:
-        repository: melpa/melpa
-        path: melpa
+    - uses: actions/checkout@v2
 
-    - name: Randomly pick a package and run lint on it
-      working-directory: ./melpa/recipes
-      run: |
-        i=$(( $RANDOM * $(ls | wc -l) / 32767 ))
-        elinter -r $(ls | head -n $i | tail -1)
+    - name: Pick a random package
+      run: ./random
+      env:
+        MELPA_TOP_PERCENTAGE_BOUND: ${{ matrix.percentage }}
+
+    - name: Run lint on the package
+      run: elinter -r $RECIPE

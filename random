@@ -1,0 +1,43 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash -p jq
+
+set -e
+
+bound=${MELPA_TOP_PERCENTAGE_BOUND:-75}
+
+data="$(mktemp)"
+csv="$(mktemp)"
+
+cleanup() { rm -f "$data" "$csv"; }
+trap cleanup 0 1 2 3 6 9 15
+
+curl -sL https://melpa.org/download_counts.json > "$data"
+
+# Convert the JSON file into CSV
+jq --null-input --raw-output --argfile data "$data" \
+   '$data | keys | map([ .,  $data[.] ])[] | @csv' \
+    | sort -n -t , -k 2 > "$csv"
+
+total=$(cut -d' ' -f1 <(wc -l "$csv"))
+offset=$(( total * bound / 100 ))
+
+# Pick a random package and get its information
+i=$(( $RANDOM * ( $total - $offset ) / 32767 + $offset ))
+percentage="$(printf %.2f%% "$(( 10**2 * 100 * $i / $total ))e-2")"
+
+mapfile -d, -t cells < <(sed -n "${i}p" "$csv")
+package=$(jq --raw-output <<<${cells[0]})
+mapfile -t count_ <<<${cells[1]}
+count=${count_[0]}
+
+echo "Selected package: $package (count: $count, percentage: $percentage)"
+
+# Download a recipe and print its content
+outdir="$(mktemp -d)"
+outfile="$outdir/$package"
+curl -sL "https://github.com/melpa/melpa/raw/master/recipes/$package" \
+     > "$outfile"
+cat "$outfile"
+
+echo "::set-env name=PACKAGE::$package"
+echo "::set-env name=RECIPE::$outfile"
