@@ -1,9 +1,9 @@
 name: 'Random'
 on:
   schedule:
-    - cron: '0 3 * * *'
+    - cron: '0 19 * * *'
 jobs:
-  demo:
+  lint:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -21,6 +21,7 @@ jobs:
       run: nix-env -if https://github.com/akirak/elinter/archive/v4.tar.gz -A main
     - name: Configure elinter
       run: |
+        # Set the linters and the Emacs version used for linting
         echo "::set-env name=ELINTER_LINTERS::checkdoc check-declare package-lint melpazoid"
         echo "::set-env NAME=EMACS_VERSION::27.1"
 
