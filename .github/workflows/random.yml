@@ -36,4 +36,4 @@ jobs:
         MELPA_TOP_PERCENTAGE_BOUND: ${{ matrix.percentage }}
 
     - name: Run lint on the package
-      run: elinter -r $RECIPE
+      run: elinter -r ${RECIPE_FILE}
