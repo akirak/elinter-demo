@@ -11,8 +11,7 @@ jobs:
     strategy:
       matrix:
         percentage:
-          - 60
-          - 80
+          - 75
     steps:
     # Install Nix
     - uses: cachix/install-nix-action@v10
