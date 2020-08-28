@@ -40,4 +40,4 @@ curl -sL "https://github.com/melpa/melpa/raw/master/recipes/$package" \
 cat "$outfile"
 
 echo "::set-env name=PACKAGE::$package"
-echo "::set-env name=RECIPE::$outfile"
+echo "::set-env name=RECIPE_FILE::$outfile"
