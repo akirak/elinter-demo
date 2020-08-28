@@ -2,6 +2,9 @@ name: 'Random'
 on:
   schedule:
     - cron: '0 19 * * *'
+  push:
+    branches:
+    - 'random-*'
 jobs:
   lint:
     runs-on: ubuntu-latest
