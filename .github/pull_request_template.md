@@ -1,5 +1,7 @@
+- Origin: *URL of the repository* e.g. https://github.com/psibi/dhall-mode
+- Fork: *URL of elinter branch* e.g. https://github.com/akirak/dhall-mode/tree/elinter
+
 ## Procedure
-### Mandatory steps
 The following steps are required to merge the PR. Unless all the checks pass, it won't be merged:
 
 - [ ] Create elinter branch in the repository and install recipe files using elinter.el.
@@ -7,7 +9,6 @@ The following steps are required to merge the PR. Unless all the checks pass, it
 - [ ] If the project has a test suite, add it to the workflow as well.
 - [ ] Linting and testing for the project passes.
 
-### Optional steps
 The following steps are not required to merge the PR but are recommended:
 
 - [ ] If there is an existing Makefile for CI, rewrite it using elinter.
