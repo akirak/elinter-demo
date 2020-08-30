@@ -1,11 +1,13 @@
 name: 'Demo'
 on:
   pull_request:
+    paths:
+      - .github/workflows/test.yml
   push:
     branches:
       - master
-    paths-ignore:
-      - '*.org'
+    paths:
+      - .github/workflows/test.yml
 jobs:
   demo:
     runs-on: ubuntu-latest
