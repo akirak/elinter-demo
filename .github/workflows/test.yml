@@ -53,3 +53,12 @@ jobs:
         path: dhall-mode
     - run: elinter
       working-directory: ./dhall-mode
+
+    - name: Check out dumb-jump
+      uses: actions/checkout@v2
+      with:
+        repository: akirak/dumb-jump
+        ref: elinter
+        path: dumb-jump
+    - run: elinter --ert-runner
+      working-directory: ./dumb-jump
