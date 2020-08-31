@@ -7,7 +7,6 @@ The following steps are required to merge the PR. Unless all the checks pass, it
 - [ ] Create elinter branch in the repository and install recipe files using elinter.el.
 - [ ] Add corresponding steps to the workflow file.
 - [ ] If the project has a test suite, add it to the workflow as well.
-- [ ] Linting and testing for the project passes.
 
 The following steps are not required to merge the PR but are recommended:
 
