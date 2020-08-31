@@ -55,3 +55,13 @@ jobs:
         path: dhall-mode
     - run: elinter
       working-directory: ./dhall-mode
+
+    - name: Check out selectrum
+      uses: actions/checkout@v2
+      with:
+        repository: akirak/selectrum
+        ref: elinter
+        path: selectrum
+    - run: elinter
+      working-directory: ./selectrum
+
