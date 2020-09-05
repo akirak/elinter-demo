@@ -1,6 +1,3 @@
-- Origin: *URL of the repository* e.g. https://github.com/psibi/dhall-mode
-- Fork: *URL of elinter branch* e.g. https://github.com/akirak/dhall-mode/tree/elinter
-
 ## Procedure
 The following steps are required to merge the PR. Unless all the checks pass, it won't be merged:
 
