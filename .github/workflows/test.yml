@@ -55,3 +55,12 @@ jobs:
         path: dhall-mode
     - run: elinter
       working-directory: ./dhall-mode
+
+    - name: Check out ert-runner.el
+      uses: actions/checkout@v2
+      with:
+        repository: akirak/ert-runner.el
+        ref: elinter
+        path: ert-runner.el
+    - run: elinter
+      working-directory: ./ert-runner.el
