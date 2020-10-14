@@ -19,7 +19,7 @@ jobs:
 
     # Install and configure elinter
     - name: Install elinter
-      run: nix-env -if https://github.com/akirak/elinter/archive/v4.tar.gz -A main
+      run: nix-env -if https://github.com/akirak/elinter/archive/v4.tar.gz
     - name: Configure elinter
       run: |
         echo "::set-env name=ELINTER_LINTERS::checkdoc check-declare package-lint melpazoid"
