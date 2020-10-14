@@ -24,8 +24,8 @@ jobs:
     - name: Configure elinter
       run: |
         # Set the linters and the Emacs version used for linting
-        echo "::set-env name=ELINTER_LINTERS::checkdoc check-declare package-lint melpazoid"
-        echo "::set-env NAME=EMACS_VERSION::27.1"
+        echo "ELINTER_LINTERS=checkdoc check-declare package-lint melpazoid" >> $GITHUB_ENV
+        echo "EMACS_VERSION=27.1" >> $GITHUB_ENV
 
     - uses: actions/checkout@v2
 
