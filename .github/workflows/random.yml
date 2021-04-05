@@ -13,9 +13,7 @@ jobs:
         percentage:
           - 75
         nixpkgs_channel:
-        - nixos-20.03-small
         - nixos-20.09-small
-        - nixos-unstable-small
     steps:
     - uses: cachix/install-nix-action@v12
       with:
