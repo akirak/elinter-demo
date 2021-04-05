@@ -52,7 +52,7 @@ jobs:
         repository: akirak/reformatter.el
         ref: elinter
         path: reformatter.el
-    - run: elinter --ert --from-nixpkgs shfmt -- reformatter-tests.el
+    - run: nix-shell -p shfmt --run 'elinter --ert -- reformatter-tests.el'
       working-directory: ./reformatter.el
 
     - name: Check out dhall-mode
