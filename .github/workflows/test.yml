@@ -36,7 +36,7 @@ jobs:
     # Demo
 
     - name: Check out lsp-dart
-      uses: actions/checkout@v2.3.5
+      uses: actions/checkout@v2.4.0
       with:
         repository: akirak/lsp-dart
         ref: elinter
@@ -47,7 +47,7 @@ jobs:
         ELINTER_ALLOW_WARNINGS: melpazoid
 
     - name: Check out reformatter.el
-      uses: actions/checkout@v2.3.5
+      uses: actions/checkout@v2.4.0
       with:
         repository: akirak/reformatter.el
         ref: elinter
@@ -56,7 +56,7 @@ jobs:
       working-directory: ./reformatter.el
 
     - name: Check out dhall-mode
-      uses: actions/checkout@v2.3.5
+      uses: actions/checkout@v2.4.0
       with:
         repository: akirak/dhall-mode
         ref: elinter
